@@ -47,7 +47,15 @@ const Home = ({ favVerses, setFavVerses }) => {
 	}
 
 	const handleAddToFavorites = () => {
-		setFavVerses(favVerses.concat(currentVerseData))
+		const newId = Math.max(
+			...favVerses.map((verse) => verse.id)
+		)
+		const favVerse = {
+			...currentVerseData,
+			id: newId ? newId + 1 : 1,
+		}
+
+		setFavVerses(favVerses.concat(favVerse))
 	}
 
 	if (isLoading) {

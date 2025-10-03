@@ -3,7 +3,10 @@ const Favorites = ({ favVerses, setFavVerses }) => {
 		<>
 			{favVerses.map((verseData) => {
 				return (
-					<div style={{ border: '1px solid' }}>
+					<div
+						key={verseData.id}
+						style={{ border: '1px solid' }}
+					>
 						<h1> {verseData.name} </h1>
 						<h2> {verseData.book} </h2>
 						<p>
