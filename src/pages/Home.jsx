@@ -7,6 +7,7 @@ const Home = ({ favVerses, setFavVerses }) => {
 	const [error, setError] = useState(null)
 	const [isLoading, setIsLoading] = useState(true)
 	const [isMaxFav, setIsMaxFav] = useState(false)
+	const [isAlreadyFav, setIsAlreadyFav] = useState(false)
 
 	useEffect(() => {
 		randomVerse()
@@ -39,12 +40,15 @@ const Home = ({ favVerses, setFavVerses }) => {
 			setCurrentVerseData(randomVerse)
 			setTimeout(() => setIsLoading(false), 1000)
 		} catch (e) {
+			setIsLoading(false)
 			setError(e.message)
 		}
 	}
 
 	const handleRandomVerse = () => {
+		setIsLoading(true)
 		randomVerse()
+		setIsAlreadyFav(false)
 	}
 
 	const handleAddToFavorites = () => {
@@ -66,6 +70,7 @@ const Home = ({ favVerses, setFavVerses }) => {
 		if (favVerses.length + 1 >= 10) {
 			setIsMaxFav(true)
 		}
+		setIsAlreadyFav(true)
 	}
 
 	if (isLoading) {
@@ -82,6 +87,7 @@ const Home = ({ favVerses, setFavVerses }) => {
 			handleRandomVerse={handleRandomVerse}
 			handleAddToFavorites={handleAddToFavorites}
 			isMaxFav={isMaxFav}
+			isAlreadyFav={isAlreadyFav}
 		/>
 	)
 }

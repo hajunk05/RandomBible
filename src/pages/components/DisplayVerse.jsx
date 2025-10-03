@@ -1,11 +1,13 @@
+import '../css/Home.css'
 const DisplayVerse = ({
 	currentVerseData,
 	handleRandomVerse,
 	handleAddToFavorites,
 	isMaxFav,
+	isAlreadyFav,
 }) => {
 	return (
-		<div>
+		<div class="display-container">
 			<h1> From: {currentVerseData.name}</h1>
 			<h2> {currentVerseData.book} </h2>
 			<p>
@@ -17,7 +19,7 @@ const DisplayVerse = ({
 				{' '}
 				Another Verse{' '}
 			</button>
-			{isMaxFav ? (
+			{isMaxFav || isAlreadyFav ? (
 				<button disabled> Add to Favorites </button>
 			) : (
 				<button onClick={() => handleAddToFavorites()}>

@@ -8,12 +8,13 @@ import {
 import Home from './pages/Home'
 import Favorites from './pages/Favorites'
 import { useState } from 'react'
+import './App.css'
 
 const App = () => {
 	const [favVerses, setFavVerses] = useState([])
 	return (
 		<BrowserRouter>
-			<nav>
+			<nav id="navigation-bar">
 				<Link to="/"> Home </Link>
 				<Link to="/favorites"> Favorites </Link>
 			</nav>
