@@ -1,4 +1,10 @@
 const Favorites = ({ favVerses, setFavVerses }) => {
+	const handleDeleteFavorite = (id) => {
+		const updatedFavVerses = favVerses.filter(
+			(verse) => verse.id !== id
+		)
+		setFavVerses(updatedFavVerses)
+	}
 	return (
 		<>
 			{favVerses.map((verseData) => {
@@ -14,6 +20,14 @@ const Favorites = ({ favVerses, setFavVerses }) => {
 							{verseData.chapter}:{verseData.verse}
 						</p>
 						<p> {verseData.text} </p>
+						<button
+							onClick={() =>
+								handleDeleteFavorite(verseData.id)
+							}
+						>
+							{' '}
+							Delete
+						</button>
 					</div>
 				)
 			})}
