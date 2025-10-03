@@ -2,6 +2,7 @@ const DisplayVerse = ({
 	currentVerseData,
 	handleRandomVerse,
 	handleAddToFavorites,
+	isMaxFav,
 }) => {
 	return (
 		<div>
@@ -16,9 +17,13 @@ const DisplayVerse = ({
 				{' '}
 				Another Verse{' '}
 			</button>
-			<button onClick={() => handleAddToFavorites()}>
-				Add to Favorites
-			</button>
+			{isMaxFav ? (
+				<button disabled> Add to Favorites </button>
+			) : (
+				<button onClick={() => handleAddToFavorites()}>
+					Add to Favorites
+				</button>
+			)}
 		</div>
 	)
 }

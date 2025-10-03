@@ -5,6 +5,11 @@ const Favorites = ({ favVerses, setFavVerses }) => {
 		)
 		setFavVerses(updatedFavVerses)
 	}
+
+	if (favVerses.length < 1) {
+		return <> It's quiet here... </>
+	}
+
 	return (
 		<>
 			{favVerses.map((verseData) => {

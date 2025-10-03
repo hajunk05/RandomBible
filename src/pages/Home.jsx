@@ -6,6 +6,7 @@ const Home = ({ favVerses, setFavVerses }) => {
 		useState('')
 	const [error, setError] = useState(null)
 	const [isLoading, setIsLoading] = useState(true)
+	const [isMaxFav, setIsMaxFav] = useState(false)
 
 	useEffect(() => {
 		randomVerse()
@@ -50,12 +51,21 @@ const Home = ({ favVerses, setFavVerses }) => {
 		const newId = Math.max(
 			...favVerses.map((verse) => verse.id)
 		)
-		const favVerse = {
-			...currentVerseData,
-			id: newId ? newId + 1 : 1,
-		}
+		const favVerse =
+			newId === -Infinity
+				? {
+						...currentVerseData,
+						id: 1,
+				  }
+				: {
+						...currentVerseData,
+						id: newId + 1,
+				  }
 
 		setFavVerses(favVerses.concat(favVerse))
+		if (favVerses.length + 1 >= 10) {
+			setIsMaxFav(true)
+		}
 	}
 
 	if (isLoading) {
@@ -71,6 +81,7 @@ const Home = ({ favVerses, setFavVerses }) => {
 			currentVerseData={currentVerseData}
 			handleRandomVerse={handleRandomVerse}
 			handleAddToFavorites={handleAddToFavorites}
+			isMaxFav={isMaxFav}
 		/>
 	)
 }
