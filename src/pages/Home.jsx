@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import DisplayVerse from './components/DisplayVerse'
 
-const Home = () => {
-	const [verseData, setVerseData] = useState('')
-	const [error, setError] = useState('')
-	const [favVerses, setFavVerses] = useState([])
+const Home = ({ favVerses, setFavVerses }) => {
+	const [currentVerseData, setCurrentVerseData] =
+		useState('')
+	const [error, setError] = useState(null)
+	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {
 		randomVerse()
@@ -33,7 +35,8 @@ const Home = () => {
 				text,
 				verse,
 			}
-			setVerseData(randomVerse)
+			setCurrentVerseData(randomVerse)
+			setTimeout(() => setIsLoading(false), 1000)
 		} catch (e) {
 			setError(e.message)
 		}
@@ -44,26 +47,23 @@ const Home = () => {
 	}
 
 	const handleAddToFavorites = () => {
-		setFavVerses(newFav)
+		setFavVerses(favVerses.concat(currentVerseData))
+	}
+
+	if (isLoading) {
+		return <>Loading...</>
+	}
+
+	if (error) {
+		return <> {error}</>
 	}
 
 	return (
-		<div>
-			<h1> From: {verseData.name}</h1>
-			<h2> {verseData.book} </h2>
-			<p>
-				{' '}
-				{verseData.chapter}:{verseData.verse}{' '}
-			</p>
-			<p> {verseData.text}</p>
-			<button onClick={() => handleRandomVerse()}>
-				{' '}
-				Another Verse{' '}
-			</button>
-			<button onClick={() => handleAddToFavorites()}>
-				Add to Favorites
-			</button>
-		</div>
+		<DisplayVerse
+			currentVerseData={currentVerseData}
+			handleRandomVerse={handleRandomVerse}
+			handleAddToFavorites={handleAddToFavorites}
+		/>
 	)
 }
 

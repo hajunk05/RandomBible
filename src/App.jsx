@@ -7,8 +7,10 @@ import {
 
 import Home from './pages/Home'
 import Favorites from './pages/Favorites'
+import { useState } from 'react'
 
 const App = () => {
+	const [favVerses, setFavVerses] = useState([])
 	return (
 		<BrowserRouter>
 			<nav>
@@ -18,11 +20,21 @@ const App = () => {
 			<Routes>
 				<Route
 					path="/"
-					element={<Home />}
+					element={
+						<Home
+							favVerses={favVerses}
+							setFavVerses={setFavVerses}
+						/>
+					}
 				/>
 				<Route
 					path="/favorites"
-					element={<Favorites />}
+					element={
+						<Favorites
+							favVerses={favVerses}
+							setFavVerses={setFavVerses}
+						/>
+					}
 				/>
 			</Routes>
 		</BrowserRouter>
