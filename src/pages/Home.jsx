@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 const Home = () => {
 	const [verseData, setVerseData] = useState('')
 	const [error, setError] = useState('')
+	const [favVerses, setFavVerses] = useState([])
 
 	useEffect(() => {
 		randomVerse()
@@ -38,6 +39,14 @@ const Home = () => {
 		}
 	}
 
+	const handleRandomVerse = () => {
+		randomVerse()
+	}
+
+	const handleAddToFavorites = () => {
+		setFavVerses(newFav)
+	}
+
 	return (
 		<div>
 			<h1> From: {verseData.name}</h1>
@@ -47,6 +56,13 @@ const Home = () => {
 				{verseData.chapter}:{verseData.verse}{' '}
 			</p>
 			<p> {verseData.text}</p>
+			<button onClick={() => handleRandomVerse()}>
+				{' '}
+				Another Verse{' '}
+			</button>
+			<button onClick={() => handleAddToFavorites()}>
+				Add to Favorites
+			</button>
 		</div>
 	)
 }
