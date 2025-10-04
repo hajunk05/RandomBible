@@ -1,3 +1,6 @@
+import DisplayVerse from './components/DisplayVerse'
+import './css/HomeAndFavorites.css'
+
 const Favorites = ({ favVerses, setFavVerses }) => {
 	const handleDeleteFavorite = (id) => {
 		const updatedFavVerses = favVerses.filter(
@@ -11,32 +14,26 @@ const Favorites = ({ favVerses, setFavVerses }) => {
 	}
 
 	return (
-		<>
+		<div>
 			{favVerses.map((verseData) => {
 				return (
 					<div
 						key={verseData.id}
-						style={{ border: '1px solid' }}
+						id="compact-favorites-container"
 					>
-						<h1> {verseData.name} </h1>
-						<h2> {verseData.book} </h2>
-						<p>
-							{' '}
-							{verseData.chapter}:{verseData.verse}
-						</p>
-						<p> {verseData.text} </p>
-						<button
-							onClick={() =>
-								handleDeleteFavorite(verseData.id)
-							}
-						>
-							{' '}
-							Delete
-						</button>
+						<DisplayVerse
+							currentVerseData={verseData}
+							handleAddToFavorites={null}
+							isMaxFav={null}
+							isAlreadyFav={null}
+							isLoading={null}
+							isCompact={true}
+							handleDeleteFavorite={handleDeleteFavorite}
+						/>
 					</div>
 				)
 			})}
-		</>
+		</div>
 	)
 }
 

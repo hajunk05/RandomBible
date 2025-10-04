@@ -83,6 +83,7 @@ const Home = ({ favVerses, setFavVerses }) => {
 			isMaxFav={isMaxFav}
 			isAlreadyFav={isAlreadyFav}
 			isLoading={isLoading}
+			handleDeleteFavorite={null}
 		/>
 	)
 }

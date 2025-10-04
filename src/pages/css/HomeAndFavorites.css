@@ -7,7 +7,6 @@ body {
 .display-container {
 	display: flex;
 	min-height: 700px;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
@@ -60,4 +59,24 @@ button:hover {
 	align-items: center;
 	height: 200px;
 	width: 500px;
+}
+
+/* For the favorites page text displaying */
+
+.compact-display-text-only {
+	display: flex;
+	padding-top: 20px;
+	width: 300px;
+	height: 300px;
+	flex-direction: column;
+	border-style: ridge;
+	border-width: 15px;
+	border-color: rgb(165, 150, 127);
+	background-color: rgb(244, 233, 219);
+	color: rgb(45, 45, 45);
+	text-align: center;
+}
+
+#compact-favorites-container {
+	display: grid;
 }

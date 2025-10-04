@@ -1,4 +1,5 @@
-import '../css/Home.css'
+import '../css/HomeAndFavorites.css'
+import HomeButtons from './HomeButtons'
 const DisplayVerse = ({
 	currentVerseData,
 	handleRandomVerse,
@@ -6,11 +7,20 @@ const DisplayVerse = ({
 	isMaxFav,
 	isAlreadyFav,
 	isLoading,
+	isCompact = false,
+	handleDeleteFavorite,
 }) => {
+	const displayContainer = isCompact
+		? null
+		: 'display-container'
+
+	const displayText = isCompact
+		? 'compact-display-text-only'
+		: 'display-text-only'
+
 	if (isLoading) {
 		return (
 			<div className="display-container">
-				<h1> From: World English Bible</h1>
 				<div className="display-text-only">
 					<h1 id="loading-container"> Loading... </h1>
 				</div>
@@ -18,9 +28,8 @@ const DisplayVerse = ({
 		)
 	}
 	return (
-		<div className="display-container">
-			<h1> From: World English Bible</h1>
-			<div className="display-text-only">
+		<div className={displayContainer}>
+			<div className={displayText}>
 				<h1> {currentVerseData.book} </h1>
 				<p>
 					{' '}
@@ -31,23 +40,14 @@ const DisplayVerse = ({
 					<p> {currentVerseData.text}</p>
 				</div>
 				<div className="display-buttons-only">
-					<button onClick={() => handleRandomVerse()}>
-						{' '}
-						Another Verse{' '}
-					</button>
-					{isMaxFav || isAlreadyFav ? (
-						<button
-							disabled
-							id="favorite-button-pressed"
-						>
-							{' '}
-							Add to Favorites{' '}
-						</button>
-					) : (
-						<button onClick={() => handleAddToFavorites()}>
-							Add to Favorites
-						</button>
-					)}
+					<HomeButtons
+						handleRandomVerse={handleRandomVerse}
+						isMaxFav={isMaxFav}
+						isAlreadyFav={isAlreadyFav}
+						handleAddToFavorites={handleAddToFavorites}
+						handleDeleteFavorite={handleDeleteFavorite}
+						currentVerseData={currentVerseData}
+					/>
 				</div>
 			</div>
 		</div>
