@@ -5,31 +5,50 @@ const DisplayVerse = ({
 	handleAddToFavorites,
 	isMaxFav,
 	isAlreadyFav,
+	isLoading,
 }) => {
+	if (isLoading) {
+		return (
+			<div className="display-container">
+				<h1> From: World English Bible</h1>
+				<div className="display-text-only">
+					<h1 id="loading-container"> Loading... </h1>
+				</div>
+			</div>
+		)
+	}
 	return (
 		<div className="display-container">
-			<h1> From: {currentVerseData.name}</h1>
+			<h1> From: World English Bible</h1>
 			<div className="display-text-only">
-				<h2> {currentVerseData.book} </h2>
+				<h1> {currentVerseData.book} </h1>
 				<p>
 					{' '}
 					{currentVerseData.chapter}:
 					{currentVerseData.verse}{' '}
 				</p>
-				<p> {currentVerseData.text}</p>
-			</div>
-			<div className="display-buttons-only">
-				<button onClick={() => handleRandomVerse()}>
-					{' '}
-					Another Verse{' '}
-				</button>
-				{isMaxFav || isAlreadyFav ? (
-					<button disabled> Add to Favorites </button>
-				) : (
-					<button onClick={() => handleAddToFavorites()}>
-						Add to Favorites
+				<div id="text">
+					<p> {currentVerseData.text}</p>
+				</div>
+				<div className="display-buttons-only">
+					<button onClick={() => handleRandomVerse()}>
+						{' '}
+						Another Verse{' '}
 					</button>
-				)}
+					{isMaxFav || isAlreadyFav ? (
+						<button
+							disabled
+							id="favorite-button-pressed"
+						>
+							{' '}
+							Add to Favorites{' '}
+						</button>
+					) : (
+						<button onClick={() => handleAddToFavorites()}>
+							Add to Favorites
+						</button>
+					)}
+				</div>
 			</div>
 		</div>
 	)

@@ -25,12 +25,10 @@ const Home = ({ favVerses, setFavVerses }) => {
 
 			const fullVerseData = await response.json()
 
-			const { name } = fullVerseData.translation
 			const { book, book_id, chapter, text, verse } =
 				fullVerseData.random_verse
 
 			const randomVerse = {
-				name,
 				book,
 				book_id,
 				chapter,
@@ -73,10 +71,6 @@ const Home = ({ favVerses, setFavVerses }) => {
 		setIsAlreadyFav(true)
 	}
 
-	if (isLoading) {
-		return <>Loading...</>
-	}
-
 	if (error) {
 		return <> {error}</>
 	}
@@ -88,6 +82,7 @@ const Home = ({ favVerses, setFavVerses }) => {
 			handleAddToFavorites={handleAddToFavorites}
 			isMaxFav={isMaxFav}
 			isAlreadyFav={isAlreadyFav}
+			isLoading={isLoading}
 		/>
 	)
 }
