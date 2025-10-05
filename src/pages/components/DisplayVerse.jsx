@@ -1,5 +1,5 @@
 import '../css/HomeAndFavorites.css'
-import HomeButtons from './HomeButtons'
+import HomeButtons from './AllButtons'
 const DisplayVerse = ({
 	currentVerseData,
 	handleRandomVerse,
@@ -11,7 +11,7 @@ const DisplayVerse = ({
 	handleDeleteFavorite,
 }) => {
 	const displayContainer = isCompact
-		? null
+		? 'compact-display-container'
 		: 'display-container'
 
 	const displayText = isCompact

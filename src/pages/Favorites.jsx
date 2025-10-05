@@ -14,7 +14,7 @@ const Favorites = ({ favVerses, setFavVerses }) => {
 	}
 
 	return (
-		<div>
+		<div id="parent-favorites-container">
 			{favVerses.map((verseData) => {
 				return (
 					<div

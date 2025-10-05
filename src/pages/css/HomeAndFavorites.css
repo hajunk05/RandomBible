@@ -1,14 +1,15 @@
 body {
-	background-color: rgb(240, 236, 229);
+	background-color: rgb(210, 175, 76);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 }
 
 .display-container {
 	display: flex;
-	min-height: 700px;
+	min-height: 799px;
 	justify-content: center;
 	align-items: center;
+	background-size: cover;
 }
 
 .display-text-only {
@@ -78,5 +79,20 @@ button:hover {
 }
 
 #compact-favorites-container {
-	display: grid;
+	display: flex;
+	max-width: 300px;
+}
+
+.compact-display-container {
+	display: flex;
+	max-width: 300px;
+}
+
+#parent-favorites-container {
+	display: flex;
+	margin-top: 10%;
+	margin-bottom: 10%;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	row-gap: 20px;
 }
