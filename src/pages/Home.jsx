@@ -21,7 +21,7 @@ const Home = ({ favVerses, setFavVerses }) => {
 			)
 
 			if (!response.ok) {
-				throw new Error('Failed to fetch verse')
+				throw new Error('Failed to fetch detailed verse')
 			}
 
 			const fullVerseData = await response.json()

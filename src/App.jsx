@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import Favorites from './pages/Favorites'
 import { useState } from 'react'
 import './App.css'
+import VerseDetail from './pages/VerseDetail'
 
 const App = () => {
 	const [favVerses, setFavVerses] = useState([])
@@ -36,6 +37,10 @@ const App = () => {
 							setFavVerses={setFavVerses}
 						/>
 					}
+				/>
+				<Route
+					path="/:book/:chapter/:verse"
+					element={<VerseDetail />}
 				/>
 			</Routes>
 		</BrowserRouter>
