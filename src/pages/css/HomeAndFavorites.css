@@ -120,3 +120,12 @@ button:hover {
 	align-items: center;
 	text-align: center;
 }
+
+/* For anchor tag design for specific verse */
+#verse-reference {
+	text-decoration: none;
+}
+
+#verse-reference:hover {
+	color: rgb(165, 150, 127);
+}

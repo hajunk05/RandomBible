@@ -43,6 +43,7 @@ const DisplayVerse = ({
 						href={`${currentVerseData.book.toLowerCase()}/${
 							currentVerseData.chapter
 						}/${currentVerseData.verse}`}
+						id="verse-reference"
 					>
 						{' '}
 						{currentVerseData.chapter}:
