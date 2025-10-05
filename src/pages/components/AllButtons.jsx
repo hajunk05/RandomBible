@@ -15,7 +15,7 @@ const HomeButtons = ({
 					}
 				>
 					{' '}
-					Delete
+					Remove from Favorites
 				</button>
 			</>
 		)

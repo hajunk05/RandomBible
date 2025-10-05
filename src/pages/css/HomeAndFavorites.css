@@ -109,3 +109,14 @@ button:hover {
 	flex-wrap: wrap;
 	row-gap: 20px;
 }
+
+/* For Empty Favorites Page */
+#empty-favorites-container {
+	display: flex;
+	margin-top: 10%;
+	height: 500px;
+	font-size: 20px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}

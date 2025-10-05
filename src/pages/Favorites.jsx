@@ -10,7 +10,11 @@ const Favorites = ({ favVerses, setFavVerses }) => {
 	}
 
 	if (favVerses.length < 1) {
-		return <> It's quiet here... </>
+		return (
+			<div id="empty-favorites-container">
+				<p> It's quiet here...</p>
+			</div>
+		)
 	}
 
 	return (
