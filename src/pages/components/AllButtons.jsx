@@ -32,7 +32,9 @@ const HomeButtons = ({
 					id="favorite-button-pressed"
 				>
 					{' '}
-					Add to Favorites{' '}
+					{isMaxFav
+						? '10 Favorites Saved'
+						: 'Added to Favorites'}{' '}
 				</button>
 			) : (
 				<button onClick={() => handleAddToFavorites()}>

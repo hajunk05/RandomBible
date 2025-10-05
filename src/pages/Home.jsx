@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import DisplayVerse from './components/DisplayVerse'
+import Popup from './components/Popup'
 
 const Home = ({ favVerses, setFavVerses }) => {
 	const [currentVerseData, setCurrentVerseData] =
@@ -76,15 +77,18 @@ const Home = ({ favVerses, setFavVerses }) => {
 	}
 
 	return (
-		<DisplayVerse
-			currentVerseData={currentVerseData}
-			handleRandomVerse={handleRandomVerse}
-			handleAddToFavorites={handleAddToFavorites}
-			isMaxFav={isMaxFav}
-			isAlreadyFav={isAlreadyFav}
-			isLoading={isLoading}
-			handleDeleteFavorite={null}
-		/>
+		<>
+			<DisplayVerse
+				currentVerseData={currentVerseData}
+				handleRandomVerse={handleRandomVerse}
+				handleAddToFavorites={handleAddToFavorites}
+				isMaxFav={isMaxFav}
+				isAlreadyFav={isAlreadyFav}
+				isLoading={isLoading}
+				handleDeleteFavorite={null}
+			/>
+			<Popup isAlreadyFav={isAlreadyFav} />
+		</>
 	)
 }
 

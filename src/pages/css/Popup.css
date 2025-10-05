@@ -1,0 +1,36 @@
+#favorite-pop-up {
+	display: flex;
+	width: 300px;
+	height: 65px;
+	justify-content: center;
+	align-items: center;
+	border-style: ridge;
+	border-color: rgb(165, 150, 127);
+	font-size: 30px;
+	border-color: rgb(62, 50, 38);
+	border-width: 7px;
+	background-color: rgb(244, 233, 219);
+	opacity: 1;
+
+	animation: favPopup, fadeOut;
+	animation-timing-function: ease-out, ease-out;
+	animation-delay: 0s, 2.5s;
+	animation-duration: 0.75s, 1.5s;
+	animation-fill-mode: forwards, forwards;
+}
+
+@keyframes favPopup {
+	from {
+		margin-left: 100%;
+	}
+	to {
+		margin-left: 85%;
+	}
+}
+
+@keyframes fadeOut {
+	to {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
