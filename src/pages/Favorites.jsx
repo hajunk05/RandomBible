@@ -1,18 +1,60 @@
+import { useEffect, useState } from 'react'
+import './css/HomeAndFavorites.css'
 import DisplayVerse from './components/DisplayVerse'
 import './css/HomeAndFavorites.css'
+import { useLocation } from 'react-router-dom'
 
-const Favorites = ({ favVerses, setFavVerses }) => {
+const Favorites = () => {
+	const [isLoading, setIsLoading] = useState(true)
+	const [favVerses, setFavVerses] = useState([])
+	const location = useLocation()
+
 	const handleDeleteFavorite = (id) => {
-		const updatedFavVerses = favVerses.filter(
-			(verse) => verse.id !== id
+		localStorage.removeItem(id)
+		const favVersesToAdd = []
+		for (let i = 0; i < localStorage.length; i++) {
+			const key = localStorage.key(i)
+			if (!Number.isNaN(Number(key))) {
+				favVersesToAdd.push(
+					JSON.parse(localStorage.getItem(key))
+				)
+			}
+		}
+		setFavVerses(favVersesToAdd)
+		localStorage.setItem(
+			'count',
+			Number(localStorage.getItem('count')) - 1
 		)
-		setFavVerses(updatedFavVerses)
 	}
 
-	if (favVerses.length < 1) {
+	useEffect(() => {
+		const favVersesToAdd = []
+		for (let i = 0; i < localStorage.length; i++) {
+			const key = localStorage.key(i)
+			if (!Number.isNaN(Number(key))) {
+				favVersesToAdd.push(
+					JSON.parse(localStorage.getItem(key))
+				)
+			}
+		}
+		setFavVerses(favVersesToAdd)
+		setIsLoading(false)
+	}, [location.key])
+
+	if (Number(localStorage.getItem('count')) < 1) {
 		return (
 			<div id="empty-favorites-container">
 				<p> It's quiet here...</p>
+			</div>
+		)
+	}
+
+	if (isLoading) {
+		return (
+			<div className="display-container">
+				<div className="display-text-only">
+					<h1 id="loading-container"> Loading... </h1>
+				</div>
 			</div>
 		)
 	}

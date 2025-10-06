@@ -28,6 +28,7 @@ const DisplayVerse = ({
 			</div>
 		)
 	}
+
 	return (
 		<div className={displayContainer}>
 			<div className={displayText}>

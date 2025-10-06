@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import DisplayVerse from './components/DisplayVerse'
 import Popup from './components/Popup'
 
-const Home = ({ favVerses, setFavVerses }) => {
+const Home = () => {
 	const [currentVerseData, setCurrentVerseData] =
 		useState('')
 	const [error, setError] = useState(null)
@@ -51,22 +51,44 @@ const Home = ({ favVerses, setFavVerses }) => {
 	}
 
 	const handleAddToFavorites = () => {
-		const newId = Math.max(
-			...favVerses.map((verse) => verse.id)
-		)
-		const favVerse =
-			newId === -Infinity
-				? {
-						...currentVerseData,
-						id: 1,
-				  }
-				: {
-						...currentVerseData,
-						id: newId + 1,
-				  }
+		let currentIds = []
+		let favVerse = {}
+		for (let i = 0; i < localStorage.length; i++) {
+			const key = localStorage.key(i)
+			if (!Number.isNaN(Number(key))) {
+				currentIds.push(
+					JSON.parse(localStorage.getItem(key)).id
+				)
+			}
+		}
 
-		setFavVerses(favVerses.concat(favVerse))
-		if (favVerses.length + 1 >= 10) {
+		if (localStorage.getItem('1') !== null) {
+			const newId = Math.max(...currentIds)
+
+			favVerse = {
+				...currentVerseData,
+				id: newId + 1,
+			}
+		} else {
+			favVerse = {
+				...currentVerseData,
+				id: 1,
+			}
+		}
+
+		localStorage.setItem(
+			favVerse.id,
+			JSON.stringify(favVerse)
+		)
+
+		if (localStorage.getItem('count') == null) {
+			localStorage.setItem('count', 0)
+		}
+		localStorage.setItem(
+			'count',
+			Number(localStorage.getItem('count')) + 1
+		)
+		if (Number(localStorage.getItem('count')) >= 10) {
 			setIsMaxFav(true)
 		}
 		setIsAlreadyFav(true)

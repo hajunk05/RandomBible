@@ -12,7 +12,6 @@ import './App.css'
 import VerseDetail from './pages/VerseDetail'
 
 const App = () => {
-	const [favVerses, setFavVerses] = useState([])
 	return (
 		<BrowserRouter>
 			<nav id="navigation-bar">
@@ -22,21 +21,11 @@ const App = () => {
 			<Routes>
 				<Route
 					path="/"
-					element={
-						<Home
-							favVerses={favVerses}
-							setFavVerses={setFavVerses}
-						/>
-					}
+					element={<Home />}
 				/>
 				<Route
 					path="/favorites"
-					element={
-						<Favorites
-							favVerses={favVerses}
-							setFavVerses={setFavVerses}
-						/>
-					}
+					element={<Favorites />}
 				/>
 				<Route
 					path="/:book/:chapter/:verse"
